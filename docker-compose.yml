@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672" # Porta para comunicação do RabbitMQ
+      - "15672:15672" # Porta para a interface de gerenciamento (RabbitMQ Management Plugin)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq # Persistência de dados do RabbitMQ
+
+volumes:
+  rabbitmq_data:
+    driver: local
