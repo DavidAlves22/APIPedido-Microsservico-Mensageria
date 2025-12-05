@@ -24,6 +24,9 @@ namespace Pedido.Domain
 
         public void AtualizarStatus(string novoStatus)
         {
+            if (string.IsNullOrEmpty(novoStatus))
+                throw new ArgumentException("O status não pode ser nulo ou vazio.", nameof(novoStatus));
+
             Status = novoStatus;
         }
 

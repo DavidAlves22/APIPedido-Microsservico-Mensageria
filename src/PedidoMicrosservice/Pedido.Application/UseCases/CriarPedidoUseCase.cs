@@ -1,6 +1,7 @@
 using Pedido.Application.Interfaces;
 using Pedido.Domain;
 using Pedido.Domain.Events;
+using System.Linq; // Adicionado para o método .Any()
 
 namespace Pedido.Application.UseCases
 {
@@ -17,6 +18,11 @@ namespace Pedido.Application.UseCases
 
         public async Task ExecuteAsync(CriarPedidoInput input)
         {
+            if (input.Itens == null || !input.Itens.Any()) // Validação para garantir que o pedido tenha itens
+            {
+                throw new ArgumentException("O pedido deve conter pelo menos um item.");
+            }
+
             var itensPedido = input.Itens.Select(item => new ItemPedido(
                 Guid.NewGuid(),
                 input.PedidoId,

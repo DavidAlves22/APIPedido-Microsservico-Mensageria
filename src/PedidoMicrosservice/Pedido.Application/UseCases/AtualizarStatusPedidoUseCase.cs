@@ -1,4 +1,5 @@
 using Pedido.Application.Interfaces;
+using PedidoMicrosservice.Pedido.Domain.Exceptions; // Adicionado
 
 namespace Pedido.Application.UseCases
 {
@@ -17,7 +18,7 @@ namespace Pedido.Application.UseCases
 
             if (pedido == null)
             {
-                throw new ApplicationException($"Pedido com ID {input.PedidoId} não encontrado.");
+                throw new PedidoNaoEncontradoException($"Pedido com ID {input.PedidoId} não encontrado.");
             }
 
             pedido.AtualizarStatus(input.NovoStatus);

@@ -1,14 +1,25 @@
 using MassTransit;
+using Serilog; // Adicionado
 using Pedido.Application.Consumers; // Adicionado
 using Pedido.Application.Interfaces;
 using Pedido.Application.UseCases;
 using Pedido.Infrastructure.EventBus;
 using Pedido.Infrastructure.Repositories;
+using PedidoMicrosservice.Pedido.Api.Middlewares; // Adicionado
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuração do Serilog
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .WriteTo.File("logs/pedido-api-.log", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog(); // Integra o Serilog com o host
+
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(); // Adicionado .AddNewtonsoftJson()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -52,6 +63,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseErrorHandlingMiddleware(); // Adicionado o middleware de tratamento de erros
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

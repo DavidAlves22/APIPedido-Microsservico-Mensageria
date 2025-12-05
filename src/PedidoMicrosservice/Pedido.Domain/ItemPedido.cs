@@ -17,8 +17,30 @@ namespace Pedido.Domain
         {
             Id = id;
             PedidoId = pedidoId;
+            SetNomeProduto(nomeProduto);
+            SetQuantidade(quantidade);
+            SetPrecoUnitario(precoUnitario);
+        }
+
+        // Métodos SET com validações
+        public void SetNomeProduto(string nomeProduto)
+        {
+            if (string.IsNullOrWhiteSpace(nomeProduto))
+                throw new ArgumentException("O nome do produto não pode ser vazio ou nulo.", nameof(nomeProduto));
             NomeProduto = nomeProduto;
+        }
+
+        public void SetQuantidade(int quantidade)
+        {
+            if (quantidade <= 0)
+                throw new ArgumentException("A quantidade deve ser maior que zero.", nameof(quantidade));
             Quantidade = quantidade;
+        }
+
+        public void SetPrecoUnitario(decimal precoUnitario)
+        {
+            if (precoUnitario < 0)
+                throw new ArgumentException("O preço unitário não pode ser negativo.", nameof(precoUnitario));
             PrecoUnitario = precoUnitario;
         }
     }

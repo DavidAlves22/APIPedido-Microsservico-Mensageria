@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Pagamento.Application.Interfaces;
 using Pagamento.Domain;
 using Pagamento.Domain.Events;
+using PagamentoMicrosservice.Pagamento.Domain.Exceptions; // Adicionado
 
 namespace Pagamento.Application.UseCases
 {
@@ -44,14 +45,16 @@ namespace Pagamento.Application.UseCases
             }
             else
             {
+                var mensagemRecusa = "Pagamento recusado pela operadora.";
                 var pagamentoRecusadoEvent = new PagamentoRecusadoEvent(
                     tentativaPagamento.PedidoId,
                     tentativaPagamento.Id,
                     tentativaPagamento.Valor,
                     tentativaPagamento.DataTentativa,
-                    "Pagamento recusado pela operadora."
+                    mensagemRecusa
                 );
                 await _eventBus.Publish(pagamentoRecusadoEvent);
+                throw new PagamentoInvalidoException(mensagemRecusa); // Lança a exceção de domínio
             }
         }
     }
