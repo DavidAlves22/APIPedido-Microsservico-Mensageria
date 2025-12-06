@@ -1,10 +1,10 @@
 using MassTransit;
 using Pagamento.Application.UseCases;
-using Pedido.Domain.Events;
+using Shared.IntegrationEvents;
 
 namespace Pagamento.Application.Consumers
 {
-    public class PedidoCriadoConsumer : IConsumer<PedidoCriadoDomainEvent>
+    public class PedidoCriadoConsumer : IConsumer<PedidoCriadoEvent>
     {
         private readonly ProcessarPagamentoUseCase _processarPagamentoUseCase;
 
@@ -13,7 +13,7 @@ namespace Pagamento.Application.Consumers
             _processarPagamentoUseCase = processarPagamentoUseCase;
         }
 
-        public async Task Consume(ConsumeContext<PedidoCriadoDomainEvent> context)
+        public async Task Consume(ConsumeContext<PedidoCriadoEvent> context)
         {
             var message = context.Message;
             await _processarPagamentoUseCase.ExecuteAsync(new ProcessarPagamentoInput

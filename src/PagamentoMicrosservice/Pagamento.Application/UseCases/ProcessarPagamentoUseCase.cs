@@ -1,9 +1,8 @@
-using System;
-using System.Threading.Tasks;
 using Pagamento.Application.Interfaces;
 using Pagamento.Domain;
-using Pagamento.Domain.Events;
-using PagamentoMicrosservice.Pagamento.Domain.Exceptions; // Adicionado
+using Shared.IntegrationEvents;
+using PagamentoMicrosservice.Pagamento.Domain.Exceptions;
+using Shared.Core.Enums; // Adicionado
 
 namespace Pagamento.Application.UseCases
 {
@@ -28,7 +27,7 @@ namespace Pagamento.Application.UseCases
                 input.PedidoId,
                 input.Valor,
                 DateTime.UtcNow,
-                pagamentoAprovado ? StatusPagamento.Aprovado.ToString() : StatusPagamento.Recusado.ToString()
+                pagamentoAprovado ? StatusPagamentoEnum.Aprovado.ToString() : StatusPagamentoEnum.Recusado.ToString()
             );
 
             await _pagamentoRepository.AddAsync(tentativaPagamento);

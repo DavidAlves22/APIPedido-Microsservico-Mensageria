@@ -1,14 +1,14 @@
 using System;
 
-namespace Pagamento.Domain.Events
+namespace Shared.IntegrationEvents
 {
-    public class PagamentoRecusadoEvent //: IDomainEvent
+    public class PagamentoRecusadoEvent
     {
-        public Guid PedidoId { get; private set; }
-        public Guid TentativaPagamentoId { get; private set; }
-        public decimal Valor { get; private set; }
-        public DateTime DataRecusa { get; private set; }
-        public string Motivo { get; private set; }
+        public Guid PedidoId { get; set; }
+        public Guid TentativaPagamentoId { get; set; }
+        public decimal Valor { get; set; }
+        public DateTime DataRecusa { get; set; }
+        public string Motivo { get; set; }
 
         public PagamentoRecusadoEvent(Guid pedidoId, Guid tentativaPagamentoId, decimal valor, DateTime dataRecusa, string motivo)
         {

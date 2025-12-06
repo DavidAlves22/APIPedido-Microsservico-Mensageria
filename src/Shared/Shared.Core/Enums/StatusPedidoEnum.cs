@@ -1,6 +1,6 @@
-namespace Pedido.Domain
+namespace Shared.Core.Enums
 {
-    public enum StatusPedido
+    public enum StatusPedidoEnum
     {
         Pendente,
         Aprovado,

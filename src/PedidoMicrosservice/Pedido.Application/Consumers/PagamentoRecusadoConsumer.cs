@@ -1,7 +1,7 @@
 using MassTransit;
-using Pagamento.Domain;
-using Pagamento.Domain.Events;
 using Pedido.Application.UseCases;
+using Shared.Core.Enums;
+using Shared.IntegrationEvents;
 
 namespace Pedido.Application.Consumers
 {
@@ -20,7 +20,7 @@ namespace Pedido.Application.Consumers
             await _atualizarStatusPedidoUseCase.ExecuteAsync(new AtualizarStatusPedidoInput
             {
                 PedidoId = message.PedidoId,
-                NovoStatus = StatusPagamento.Recusado.ToString()
+                NovoStatus = StatusPagamentoEnum.Recusado.ToString()
             });
 
             // Opcional: Logar o recebimento do evento

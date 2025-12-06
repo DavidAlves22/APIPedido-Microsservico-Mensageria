@@ -1,13 +1,13 @@
 using System;
 
-namespace Pagamento.Domain.Events
+namespace Shared.IntegrationEvents
 {
-    public class PagamentoAprovadoEvent //: IDomainEvent
+    public class PagamentoAprovadoEvent
     {
-        public Guid PedidoId { get; private set; }
-        public Guid TentativaPagamentoId { get; private set; }
-        public decimal Valor { get; private set; }
-        public DateTime DataAprovacao { get; private set; }
+        public Guid PedidoId { get; set; }
+        public Guid TentativaPagamentoId { get; set; }
+        public decimal Valor { get; set; }
+        public DateTime DataAprovacao { get; set; }
 
         public PagamentoAprovadoEvent(Guid pedidoId, Guid tentativaPagamentoId, decimal valor, DateTime dataAprovacao)
         {

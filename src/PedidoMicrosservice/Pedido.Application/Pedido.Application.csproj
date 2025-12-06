@@ -6,8 +6,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PagamentoMicrosservice\Pagamento.Domain\Pagamento.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\Shared.Core\Shared.Core.csproj" />
     <ProjectReference Include="..\Pedido.Domain\Pedido.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\Shared.IntegrationEvents\Shared.IntegrationEvents.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,6 +1,7 @@
 using Pedido.Application.Interfaces;
 using Pedido.Domain;
-using Pedido.Domain.Events;
+using Shared.Core.Enums;
+using Shared.IntegrationEvents;
 using System.Linq; // Adicionado para o método .Any()
 
 namespace Pedido.Application.UseCases
@@ -34,7 +35,7 @@ namespace Pedido.Application.UseCases
             var pedido = new Pedido.Domain.Pedido(
                 input.PedidoId,
                 DateTime.UtcNow,
-                StatusPedido.Pendente.ToString(),
+                StatusPedidoEnum.Pendente.ToString(),
                 0
             );
 
@@ -46,7 +47,7 @@ namespace Pedido.Application.UseCases
 
             await _pedidoRepository.AddAsync(pedido);
 
-            var pedidoCriadoEvent = new PedidoCriadoDomainEvent(
+            var pedidoCriadoEvent = new PedidoCriadoEvent(
                 pedido.Id,
                 pedido.DataCriacao,
                 pedido.ValorTotal,
