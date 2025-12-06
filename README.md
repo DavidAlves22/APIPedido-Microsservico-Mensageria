@@ -1,8 +1,6 @@
-Peço desculpas pela interrupção contínua. Apresento agora o resumo completo e o fluxograma para sua revisão.
-
 ### Resumo do Projeto: APIPedidoMicrosservico
 
-Este projeto `APIPedidoMicrosservico` é uma solução baseada em microsserviços que gerencia o fluxo de pedidos e pagamentos. Ele é composto por dois microsserviços principais: `PedidoMicrosservice` e `PagamentoMicrosservice`, que se comunicam de forma assíncrona utilizando um Event Bus (MassTransit com RabbitMQ). A arquitetura visa alta escalabilidade, resiliência e desacoplamento, seguindo princípios de Domain-Driven Design (DDD) com camadas de Domínio, Aplicação e Infraestrutura.
+Este projeto `APIPedidoMicrosservico` é uma solução de estudo baseada em microsserviços que gerencia o fluxo de pedidos e pagamentos. Ele é composto por dois microsserviços principais: `PedidoMicrosservice` e `PagamentoMicrosservice`, que se comunicam de forma assíncrona utilizando um Event Bus (MassTransit com RabbitMQ). A arquitetura visa alta escalabilidade, resiliência e desacoplamento, seguindo princípios de Domain-Driven Design (DDD) com camadas de Domínio, Aplicação e Infraestrutura.
 
 #### Microsserviço de Pedido (`PedidoMicrosservice`)
 
